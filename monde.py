@@ -1,3 +1,5 @@
+from random import randint
+
 class Monde():
     # dimension => taille du monde
     # duree_repousse =>
@@ -10,6 +12,16 @@ class Monde():
         else:
             self._dimension = dimension
         self._carte = [[0 for j in range(dimension)] for i in range(dimension)]
+        for i in range(dimension):
+            for j in range(dimension):
+                if randint(1,2) == 1:
+                     self._carte[i][j] = self._duree_repousse
+                else:
+                    self._carte[i][j] = randint(0, self._duree_repousse-1)
+                    #on met une valeur entre 0 et durée repousse
+
+
+
 
     def herbePousse(self):
         for i in range(self._dimension):
@@ -28,7 +40,7 @@ class Monde():
         for e in self._carte:
             for f in e:
                 if f != 'm':
-                    if f > 0:
+                    if f >= self._duree_repousse:
                         nbherbe+=1
         return nbherbe
     
