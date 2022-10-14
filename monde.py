@@ -49,7 +49,7 @@ class Monde():
     def setCoefCarte(self, i, j, coeff):
         self._carte[i][j] = coeff
 
-    def getDimmension(self):
+    def getDimension(self):
         return self._dimension
 
     def getDureeRepousse(self):
