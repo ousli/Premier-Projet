@@ -30,7 +30,7 @@ class Monde():
                 # self.setCoefCarte(i, j, self._duree_repousse)
     
     def herbeMangee(self, i, j):
-        if self._carte[i][j] == 0:
+        if self._carte[i][j] < self._duree_repousse:
             return True
         else:
             return False
@@ -39,9 +39,8 @@ class Monde():
         nbherbe=0
         for e in self._carte:
             for f in e:
-                if f != 'm':
-                    if f >= self._duree_repousse:
-                        nbherbe+=1
+                if f >= self._duree_repousse:
+                    nbherbe+=1
         return nbherbe
     
     def getCoefCarte(self, i ,j):
