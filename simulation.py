@@ -20,10 +20,13 @@ class Simulation():
             
 
 
-    def simMouton(self):
+    def simMouton(self, monde):
         self._horloge += 1
         print('Tour n° ', self._horloge)
         self._monde.herbePousse()
+        for e in self._moutons:
+            e.variationEnergie(monde)
+            e.deplacement(monde)
 
     def getfinmonde(self):
         return self._fin_du_monde
