@@ -27,9 +27,9 @@ class Monde():
         for i in range(self._dimension):
             for j in range(self._dimension):
                 self._carte[i][j]+=1
-                # self.setCoefCarte(i, j, self._duree_repousse)
     
     def herbeMangee(self, i, j):
+        # print(i,j)
         if self._carte[i][j] < self._duree_repousse:
             return True
         else:

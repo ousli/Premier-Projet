@@ -1,6 +1,4 @@
-from math import radians
 from random import randint
-import re
 
 class Mouton():
     def __init__(self, gain_nourriture, position, taux_reproduction):
@@ -11,32 +9,36 @@ class Mouton():
     
     def variationEnergie(self, monde):
         # on veut récupérer la position du mouton et la comparer avec le coefficent de la carte à cet endroit la
-        # self.get_position()
+
         if monde.herbeMangee(self.get_position()[0], self.get_position()[1]) == True:
             self._energie -= 1
         else:
             self._energie += self._gain_nourriture
+            monde.setCoefCarte(self.get_position()[0], self.get_position()[1], 0)
         return self._energie
 
 
     def deplacement(self , monde):
-        self.get_position()
+        # self.get_position()
         i, j = randint(-1,1), randint(-1,1)
+        i += self.get_position()[0]
+        j += self.get_position()[1]
 
-        if i + self.get_position()[0] > monde.getDimension():
-            i += self.get_position()%monde.getDimension()
-        elif i + self.get_position()[0] < 0:
-            i = monde.getDimension()
+        if i > monde.getDimension()-1:
+            i = 0
+        else:
+            if i < 0:
+                i = monde.getDimension()-1
 
-        if j + self.get_position()[1] > monde.getDimension():
-            j +=  + self.get_position()%monde.getDimension()
-        elif j + self.get_position()[1] < 0:
-            j = monde.getDimension()
+        if j > monde.getDimension()-1:
+            j = 0
+        else:
+            if j  < 0:
+                j = monde.getDimension()-1
         
         self.set_position(i, j)
 
-
-    def get_position(self, ):
+    def get_position(self):
         return self._position
 
     
