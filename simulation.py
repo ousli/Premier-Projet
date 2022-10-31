@@ -7,7 +7,7 @@ class Simulation():
         self._horloge = 0
         self._fin_du_monde = fin_du_monde
         self._moutons = []
-        self._moutons = [mouton.Mouton(4, (randint(0,49), randint(0,49)), 4) for i in range(nombre_mouton)]
+        self._moutons = [mouton.Mouton(4, (randint(0,49), randint(0,49)), 10) for i in range(nombre_mouton)]
         self._monde = monde
         self._resultats_herbe = monde.nbHerbe()
         self._resultats_moutons = len(self._moutons)            
@@ -18,19 +18,21 @@ class Simulation():
         print('Tour n° ', self._horloge)
         self._monde.herbePousse()
         for e in self._moutons:
-            print('Position X:', e.get_position()[0], 'Position Y:', e.get_position()[1],  'Energie ', e.variationEnergie(monde))
-            e.variationEnergie(monde)
             if e.variationEnergie(monde) <= 0:
                 self._moutons.remove(e)
             else:
-                if randint(1,100) <= e._taux_reproduction:
-                    print('Nouveau mouton : ', 4, e.get_position()[0], e.get_position()[1], 4)
+                e.variationEnergie(monde)
+                naissance = randint(1,100)
+                if naissance <= e._taux_reproduction:
+                    # print('Nouveau mouton : ', 4, e.get_position()[0], e.get_position()[1], 4)
+                    print('Nouveau mouton !')
                     self._moutons.append(mouton.Mouton(4, e.get_position(), 4))
-            e.deplacement(monde)
+                e.deplacement(monde)
+            print('Position X:', e.get_position()[0], 'Position Y:', e.get_position()[1],  'Energie ', e.variationEnergie(monde))
         self._resultats_herbe = monde.nbHerbe()
         self._resultats_moutons = len(self._moutons)
-        print(self._resultats_herbe)
-        print(self._resultats_moutons)
+        print(self._resultats_herbe, ' carrés d\'herbes')
+        print(self._resultats_moutons, ' mouton(s)')
 
     def getfinmonde(self):
         return self._fin_du_monde
@@ -38,9 +40,6 @@ class Simulation():
     def getMouton(self):
         return self._moutons
 
+
     def nbMouton(self):
-        # nb = 0
-        # for e in self._moutons:
-        #     nb+=1
-        # return nb
         return len(self._moutons)
