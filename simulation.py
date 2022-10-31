@@ -15,7 +15,7 @@ class Simulation():
 
     def simMouton(self, monde):
         self._horloge += 1
-        print('Tour n° ', self._horloge)
+        # print('Tour n° ', self._horloge)
         self._monde.herbePousse()
         for e in self._moutons:
             if e.variationEnergie(monde) <= 0:
@@ -25,14 +25,14 @@ class Simulation():
                 naissance = randint(1,100)
                 if naissance <= e._taux_reproduction:
                     # print('Nouveau mouton : ', 4, e.get_position()[0], e.get_position()[1], 4)
-                    print('Nouveau mouton !')
+                    # print('Nouveau mouton !')
                     self._moutons.append(mouton.Mouton(4, e.get_position(), 4))
                 e.deplacement(monde)
-            print('Position X:', e.get_position()[0], 'Position Y:', e.get_position()[1],  'Energie ', e.variationEnergie(monde))
+            # print('Position X:', e.get_position()[0], 'Position Y:', e.get_position()[1],  'Energie ', e.variationEnergie(monde))
         self._resultats_herbe = monde.nbHerbe()
         self._resultats_moutons = len(self._moutons)
-        print(self._resultats_herbe, ' carrés d\'herbes')
-        print(self._resultats_moutons, ' mouton(s)')
+        # print(self._resultats_herbe, ' carrés d\'herbes')
+        # print(self._resultats_moutons, ' mouton(s)')
 
     def getfinmonde(self):
         return self._fin_du_monde

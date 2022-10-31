@@ -18,16 +18,15 @@ print('#######################################')
 while game1.nbMouton() != 0:
 # while i <= game1.getfinmonde(): 
     coo_mouton = [e.get_position() for e in game1.getMouton()]
-    print(coo_mouton)
-    time.sleep(1)
-    
+    # print(coo_mouton)
+    print('\n')
     game1.simMouton(monde1)
     for i in range(monde1.getDimension()):
         ligne=''
         for j in range(monde1.getDimension()):
             # print(monde1.getCarte()[i][j])
             if (i , j) in coo_mouton:
-                ligne += '@'
+                ligne += '█'
             else:
                 if monde1.getCoefCarte(i,j) >= 0 and monde1.getCoefCarte(i,j) <=10:
                     ligne += '░'
