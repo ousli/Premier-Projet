@@ -37,7 +37,7 @@ class Simulation():
                 naissance = randint(1,100)
                 if naissance <= e.get_taux_reproduction():
                     self._loups.append(loup.Loup(19, e.get_position(), 5))
-                e.deplacement(monde)
+                e.deplacement(monde, self)
 
     def getfinmonde(self):
         return self._fin_du_monde

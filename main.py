@@ -17,26 +17,27 @@ while game1.nbMouton() != 0:
     coo_loup = [e.get_position() for e in game1.getLoup()]
     game1.simMouton(monde1)
     game1.simLoup(monde1)
-    x=0
-    y=0
     for i in range(monde1.getDimension()):
-        x=0
         for j in range(monde1.getDimension()):
+            if monde1.getCoefCarte(i,j) >= 0 and monde1.getCoefCarte(i,j) <=10:
+                pygame.draw.rect(screen, (153, 240, 132), pygame.Rect(i*15,j*15,15,15))
+
+            elif monde1.getCoefCarte(i,j) > 10 and monde1.getCoefCarte(i,j) <=20:
+                pygame.draw.rect(screen, (106,168,91), pygame.Rect(i*15,j*15,15,15))
+
+            elif monde1.getCoefCarte(i,j) > 20:
+                pygame.draw.rect(screen, (67,105,58), pygame.Rect(i*15,j*15,15,15))
+
             if (i , j) in coo_mouton:
-                pygame.draw.rect(screen, (255,255,255), pygame.Rect(x,y,15,15))
-            elif (i , j) in coo_loup:
-                pygame.draw.rect(screen, (0,0,0), pygame.Rect(x,y,15,15))
-            else:
-                if monde1.getCoefCarte(i,j) >= 0 and monde1.getCoefCarte(i,j) <=10:
-                    pygame.draw.rect(screen, (153, 240, 132), pygame.Rect(x,y,15,15))
-                elif monde1.getCoefCarte(i,j) > 10 and monde1.getCoefCarte(i,j) <=20:
-                    pygame.draw.rect(screen, (106,168,91), pygame.Rect(x,y,15,15))
-                elif monde1.getCoefCarte(i,j) > 20:
-                    pygame.draw.rect(screen, (67,105,58), pygame.Rect(x,y,15,15))
-            x+=15
-        y+=15
+                pygame.draw.rect(screen, (255,255,255), pygame.Rect(i*15,j*15,15,15))
+
+            if (i , j) in coo_loup:
+                pygame.draw.rect(screen, (0,0,0), pygame.Rect(i*15,j*15,15,15))
+            
+         
+            
     pygame.display.flip()
-    time.sleep(0.5)
+    pygame.time.wait(500)
 
 print('Simulation terminée !')
 
