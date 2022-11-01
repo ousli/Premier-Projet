@@ -1,9 +1,6 @@
 from random import randint
 
 class Monde():
-    # dimension => taille du monde
-    # duree_repousse =>
-    # 
     def __init__(self, dimension, duree_repousse):
         
         self._duree_repousse = duree_repousse
@@ -18,10 +15,6 @@ class Monde():
                      self._carte[i][j] = self._duree_repousse
                 else:
                     self._carte[i][j] = randint(0, self._duree_repousse-1)
-                    #on met une valeur entre 0 et durée repousse
-
-
-
 
     def herbePousse(self):
         for i in range(self._dimension):
@@ -29,7 +22,6 @@ class Monde():
                 self._carte[i][j]+=1
     
     def herbeMangee(self, i, j):
-        # print(i,j)
         if self._carte[i][j] < self._duree_repousse:
             return True
         else:

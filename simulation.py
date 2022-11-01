@@ -1,4 +1,4 @@
-import mouton
+import mouton, loup
 from random import randint
 
 class Simulation():
@@ -7,7 +7,8 @@ class Simulation():
         self._horloge = 0
         self._fin_du_monde = fin_du_monde
         self._moutons = []
-        self._moutons = [mouton.Mouton(4, (randint(0,49), randint(0,49)), 10) for i in range(nombre_mouton)]
+        self._moutons = [mouton.Mouton(4, (randint(0,49), randint(0,49)), 4) for i in range(nombre_mouton)]
+        self._loups = [loup.Loup(19, (randint(0,49), randint(0,49)), 5) for i in range(nombre_mouton//2)]
         self._monde = monde
         self._resultats_herbe = monde.nbHerbe()
         self._resultats_moutons = len(self._moutons)            
@@ -15,7 +16,6 @@ class Simulation():
 
     def simMouton(self, monde):
         self._horloge += 1
-        # print('Tour n° ', self._horloge)
         self._monde.herbePousse()
         for e in self._moutons:
             if e.variationEnergie(monde) <= 0:
@@ -23,16 +23,21 @@ class Simulation():
             else:
                 e.variationEnergie(monde)
                 naissance = randint(1,100)
-                if naissance <= e._taux_reproduction:
-                    # print('Nouveau mouton : ', 4, e.get_position()[0], e.get_position()[1], 4)
-                    # print('Nouveau mouton !')
+                if naissance <= e.get_taux_reproduction():
                     self._moutons.append(mouton.Mouton(4, e.get_position(), 4))
                 e.deplacement(monde)
-            # print('Position X:', e.get_position()[0], 'Position Y:', e.get_position()[1],  'Energie ', e.variationEnergie(monde))
         self._resultats_herbe = monde.nbHerbe()
         self._resultats_moutons = len(self._moutons)
-        # print(self._resultats_herbe, ' carrés d\'herbes')
-        # print(self._resultats_moutons, ' mouton(s)')
+    def simLoup(self, monde):
+        for e in self._loups:
+            if  e.variationEnergie(self) <= 0:
+                self._loups.remove(e)
+            else:
+                e.variationEnergie(self)
+                naissance = randint(1,100)
+                if naissance <= e.get_taux_reproduction():
+                    self._loups.append(loup.Loup(19, e.get_position(), 5))
+                e.deplacement(monde)
 
     def getfinmonde(self):
         return self._fin_du_monde
@@ -40,6 +45,8 @@ class Simulation():
     def getMouton(self):
         return self._moutons
 
-
     def nbMouton(self):
         return len(self._moutons)
+    
+    def getLoup(self):
+        return self._loups

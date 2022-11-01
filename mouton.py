@@ -8,8 +8,6 @@ class Mouton():
         self._taux_reproduction = taux_reproduction
     
     def variationEnergie(self, monde):
-        # on veut récupérer la position du mouton et la comparer avec le coefficent de la carte à cet endroit la
-
         if monde.herbeMangee(self.get_position()[0], self.get_position()[1]) == True:
             self._energie -= 1
         else:
@@ -19,7 +17,6 @@ class Mouton():
 
 
     def deplacement(self , monde):
-        # self.get_position()
         i, j = randint(-1,1), randint(-1,1)
         i += self.get_position()[0]
         j += self.get_position()[1]
@@ -44,3 +41,6 @@ class Mouton():
     
     def set_position(self, i ,j):
         self._position = (i, j)
+
+    def get_taux_reproduction(self):
+        return self._taux_reproduction
