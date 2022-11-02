@@ -1,19 +1,18 @@
 from random import randint
 
 class Mouton():
-    def __init__(self, gain_nourriture, position, taux_reproduction):
+    def __init__(self, gain_nourriture, position, energie):
         self._gain_nourriture = gain_nourriture
         self._position = position #tuple
-        self._energie = randint(1, 2*self._gain_nourriture)
-        self._taux_reproduction = taux_reproduction
+        self._energie = energie
     
     def variationEnergie(self, monde):
         if monde.herbeMangee(self.get_position()[0], self.get_position()[1]) == True:
-            self._energie -= 1
+            self._energie -=  1
         else:
             self._energie += self._gain_nourriture
             monde.setCoefCarte(self.get_position()[0], self.get_position()[1], 0)
-        return self._energie
+        return self.get_energie()
 
 
     def deplacement(self , monde):
@@ -34,14 +33,17 @@ class Mouton():
         
         self.set_position(i, j)
 
+    def get_gain_nourriture(self):
+        return self._gain_nourriture
+
     def get_position(self):
         return self._position
     
     def set_position(self, i ,j):
         self._position = (i, j)
+    
+    def set_energie(self, energie):
+        self._energie = energie
 
-    def set_taux_reproduction(self, taux):
-        self._taux_reproduction = taux
-
-    def get_taux_reproduction(self):
-        return self._taux_reproduction
+    def get_energie(self):
+        return self._energie

@@ -1,24 +1,28 @@
 from random import randint
 
 class Loup():
-    def __init__(self, gain_nourriture, position, taux_reproduction):
+    def __init__(self, gain_nourriture, position, energie):
         self._gain_nourriture = gain_nourriture
         self._position = position
-        self._energie = randint(1, 2*self._gain_nourriture)
-        self._taux_reproduction = taux_reproduction
+        # self._energie = randint(1, 2*self._gain_nourriture)
+        self._energie = energie
 
     def variationEnergie(self, simulation):
-            for e in simulation.getMouton():
-                if e.get_position() == self._position:
-                    simulation.getMouton().remove(e)
-                    return self._energie 
-            return self._energie
+        for e in simulation.getMouton():
+            if e.get_position() == self._position:
+                simulation.getMouton().remove(e)
+                self._energie += self._gain_nourriture
+                # self.set_energie(self.get_energie() + self._gain_nourriture)
+                return self._energie
+        self._energie -= 1
+        return self._energie
 
     def deplacement(self , monde, simulation):
+        distance = randint(8,15)
         for e in simulation.getMouton():
             distance_x, distance_y = e.get_position()[0] - self._position[0], e.get_position()[1] - self._position[1]
-            if distance_x >= -8 and distance_x <= 8:
-                if distance_y >= -8 and distance_y <= 8:
+            if distance_x >= -distance and distance_x <= distance:
+                if distance_y >= -distance and distance_y <= distance:
                     if distance_x < 0:
                         i = -1
                     elif distance_x > 0:
@@ -54,14 +58,17 @@ class Loup():
                     
         self.set_position(i, j)
 
+    def get_gain_nourriture(self):
+        return self._gain_nourriture
+
     def get_position(self):
         return self._position
             
     def set_position(self, i ,j):
-        self._position = (i, j)   
+        self._position = (i, j)
     
-    def set_taux_reproduction(self, taux):
-        self._taux_reproduction = taux
-    
-    def get_taux_reproduction(self):
-        return self._taux_reproduction
+    def set_energie(self, energie):
+        self._energie = energie
+
+    def get_energie(self):
+        return self._energie

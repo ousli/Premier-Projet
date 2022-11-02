@@ -1,13 +1,12 @@
 import sys
 import simulation, monde
-import time
 import pygame
 
 pygame.init()
 screen = pygame.display.set_mode((750,750))
 
 monde1 = monde.Monde(50, 30)
-game1 = simulation.Simulation(4, 10, monde1)
+game1 = simulation.Simulation(10, 10, monde1)
 
 while game1.nbMouton() != 0:
     for event in pygame.event.get():
