@@ -11,6 +11,7 @@ class Loup():
             for e in simulation.getMouton():
                 if e.get_position() == self._position:
                     simulation.getMouton().remove(e)
+                    return self._energie 
             return self._energie
 
     def deplacement(self , monde, simulation):
@@ -24,7 +25,6 @@ class Loup():
                         i = 1
                     else:
                         i = 0
-
                     if distance_y < 0:
                         j = -1
                     elif distance_y > 0:
@@ -56,10 +56,12 @@ class Loup():
 
     def get_position(self):
         return self._position
-
             
     def set_position(self, i ,j):
         self._position = (i, j)   
+    
+    def set_taux_reproduction(self, taux):
+        self._taux_reproduction = taux
     
     def get_taux_reproduction(self):
         return self._taux_reproduction

@@ -26,7 +26,6 @@ class Mouton():
         else:
             if i < 0:
                 i = monde.getDimension()-1
-
         if j > monde.getDimension()-1:
             j = 0
         else:
@@ -37,10 +36,12 @@ class Mouton():
 
     def get_position(self):
         return self._position
-
     
     def set_position(self, i ,j):
         self._position = (i, j)
+
+    def set_taux_reproduction(self, taux):
+        self._taux_reproduction = taux
 
     def get_taux_reproduction(self):
         return self._taux_reproduction
