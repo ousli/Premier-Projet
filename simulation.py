@@ -65,16 +65,6 @@ class Simulation():
         """
         self._horloge += 1
         self._monde.herbe_pousse()
-        for single_mouton in self._moutons:
-            single_mouton.variation_energie(monde)
-            if single_mouton.get_energie() <= 0:
-                self._moutons.remove(single_mouton)
-            else:
-                if single_mouton.get_energie() >= single_mouton.get_gain_nourriture() * 10:
-                    self._moutons.append(mouton.Mouton(4, single_mouton.get_position(),
-                                                        single_mouton.get_energie()//2))
-                    single_mouton.set_energie(single_mouton.get_energie() // 2)
-                single_mouton.deplacement(monde)
         for single_loup in self._loups:
             single_loup.variation_energie(self)
             if single_loup.get_energie() <= 0:
@@ -85,6 +75,17 @@ class Simulation():
                                                     single_loup.get_energie() // 2))
                     single_loup.set_energie(single_loup.get_energie() // 2)
                 single_loup.deplacement(monde, self)
+        for single_mouton in self._moutons:
+            single_mouton.variation_energie(monde)
+            if single_mouton.get_energie() <= 0:
+                self._moutons.remove(single_mouton)
+            else:
+                if single_mouton.get_energie() >= single_mouton.get_gain_nourriture() * 10:
+                    self._moutons.append(mouton.Mouton(4, single_mouton.get_position(),
+                                                        single_mouton.get_energie()//2))
+                    single_mouton.set_energie(single_mouton.get_energie() // 2)
+                single_mouton.deplacement(monde)
+       
         self._resultats_herbe = monde.nb_herbe()
         self._resultats_moutons = self.nb_mouton()
         self._resultats_loups = self.nb_loup()
