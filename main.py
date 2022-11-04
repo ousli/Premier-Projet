@@ -6,7 +6,7 @@ import monde
 pygame.init()
 screen = pygame.display.set_mode((750,750))
 pygame.display.set_caption('Simulation')
-icone = pygame.image.load('logo.png')
+icone = pygame.image.load('img/logo.png')
 pygame.display.set_icon(icone)
 
 police = pygame.font.SysFont('arlrdbd', 30)
@@ -14,6 +14,20 @@ police = pygame.font.SysFont('arlrdbd', 30)
 
 monde1 = monde.Monde(50, 30)
 game1 = simulation.Simulation(10, monde1)
+
+mouton = pygame.image.load("img/mouton.png").convert_alpha()
+mouton = pygame.transform.scale(mouton, (15 ,15))
+
+loup = pygame.image.load("img/loup.png").convert_alpha()
+loup = pygame.transform.scale(loup, (15 ,15))
+
+herbe_0 = pygame.image.load("img/herbe-0.jpg")
+herbe_0 = pygame.transform.scale(herbe_0, (15 ,15))
+herbe_1 = pygame.image.load("img/herbe-1.jpg")
+herbe_1 = pygame.transform.scale(herbe_1, (15 ,15))
+herbe_2 = pygame.image.load("img/herbe-2.jpg")
+herbe_2 = pygame.transform.scale(herbe_2, (15 ,15))
+
 
 while game1.nb_mouton() != 0:
     for event in pygame.event.get():
@@ -27,33 +41,24 @@ while game1.nb_mouton() != 0:
         for j in range(monde1.get_dimension()):
             # Affichage sur la fenetre pygame
             if monde1.get_coef_carte(i, j) >= 0 and monde1.get_coef_carte(i,j) <=10:
-                pygame.draw.rect(screen, (153, 240, 132),
-                                pygame.Rect(i * 15, j * 15, 15, 15))
+                screen.blit(herbe_0, (i * 15, j * 15))
+
             elif monde1.get_coef_carte(i, j) > 10 and monde1.get_coef_carte(i,j) <= 20:
-                pygame.draw.rect(screen, (106, 168, 91),
-                                pygame.Rect(i * 15, j * 15, 15, 15))
+                screen.blit(herbe_1, (i * 15, j * 15))
+
             elif monde1.get_coef_carte(i, j) > 20:
-                pygame.draw.rect(screen, (67, 105, 58),
-                                pygame.Rect(i * 15, j * 15, 15, 15))
+                screen.blit(herbe_2, (i * 15, j * 15))
 
             if (i, j) in coo_mouton and (i, j) in coo_loup:
-                pygame.draw.rect(screen, (0, 0, 0),
-                                pygame.Rect(i * 15, j * 15, 7.5, 7.5))
-                pygame.draw.rect(screen, (255, 255, 255),
-                                pygame.Rect(i * 15 + 7.5, j * 15, 7.5, 7.5))
-
-                pygame.draw.rect(screen, (255, 255, 255),
-                                pygame.Rect(i * 15, j * 15 + 7.5, 7.5, 7.5))
-                pygame.draw.rect(screen, (0, 0, 0),
-                                pygame.Rect(i * 15 + 7.5, j * 15 + 7.5, 7.5, 7.5))
+                screen.blit(mouton, (i * 15, j * 15))
+                screen.blit(loup, (i * 15, j * 15))
 
             elif (i, j) in coo_mouton:
-                pygame.draw.rect(screen, (255, 255, 255),
-                                pygame.Rect(i * 15, j * 15, 15, 15))
+                screen.blit(mouton, (i * 15, j * 15))
 
             elif (i, j) in coo_loup:
-                pygame.draw.rect(screen, (0, 0, 0),
-                                pygame.Rect(i * 15, j * 15, 15, 15))
+                screen.blit(loup, (i * 15, j * 15))
+
 
     nb_mouton = police.render('Nb de mouton : ' + str(+ game1.nb_mouton()), True, 'red')
     nb_loup = police.render('Nb de loup : ' + str(+ game1.nb_loup()), True, 'red')
@@ -64,6 +69,6 @@ while game1.nb_mouton() != 0:
     screen.blit(nb_herbe, (10, 60))
 
     pygame.display.flip()
-    pygame.time.wait(500)
+    pygame.time.wait(250)
 
 print('Simulation terminée !')
