@@ -72,7 +72,8 @@ class Animaux():
         Données:
             i : entier positif ou nul, abscisse de l'animal
             j : entier positif ou nul, ordonnée de l'animal
-        Résultat : Change la position de l'animal à un abscisse et une ordonnée donnés, ne renvoie rien
+        Résultat : Change la position de l'animal à un abscisse et une ordonnée donnés,
+                    ne renvoie rien
         """
         self._position = (i, j)
 

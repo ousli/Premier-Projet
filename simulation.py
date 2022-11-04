@@ -7,7 +7,7 @@ class Simulation():
     Classe qui gère la simulation
 
     Attributs:
-        _nombre_mouton() : Entier positif, nombre de mouton dans la simulation 
+        _nombre_mouton() : Entier positif, nombre de mouton dans la simulation
         _horloge() : Entier positif ou nul, nombre de tour de la simulation
         _moutons() : Liste, contient tout les objets moutons de la simulation
         _loups() : Liste, contient tout les objets loups de la simulation
@@ -27,12 +27,13 @@ class Simulation():
         """
         Constructeur de la classe Simulation
         Données:
-            _nombre_mouton() : Entier positif, nombre de mouton dans la simulation 
+            _nombre_mouton() : Entier positif, nombre de mouton dans la simulation
             _horloge() : Entier positif ou nul, nombre de tour de la simulation
             _moutons() : Liste, contient tout les objets moutons de la simulation
             _loups() : Liste, contient tout les objets loups de la simulation
             _monde() : Classe de type Monde dans laquel vas tournée la simulation
-            _resultats_herbe() : Entier positif, nombre de carrés d'herbes poussés dans la simulation
+            _resultats_herbe() : Entier positif,
+                                nombre de carrés d'herbes poussés dans la simulation
             _resultats_moutons() : Entier positif ou nul, nombre de moutons dans la simulation
             _resultats_loups() : Entier positif ou nul, nombre de loups dans la simulation
         Résultat:
@@ -85,7 +86,7 @@ class Simulation():
                                                         single_mouton.get_energie()//2))
                     single_mouton.set_energie(single_mouton.get_energie() // 2)
                 single_mouton.deplacement(monde)
-       
+
         self._resultats_herbe = monde.nb_herbe()
         self._resultats_moutons = self.nb_mouton()
         self._resultats_loups = self.nb_loup()
