@@ -4,7 +4,7 @@ import simulation
 import monde
 
 pygame.init()
-screen = pygame.display.set_mode((750,750))
+screen = pygame.display.set_mode((1000,1000))
 pygame.display.set_caption('Simulation')
 icone = pygame.image.load('img/logo.png')
 pygame.display.set_icon(icone)
@@ -16,17 +16,17 @@ monde1 = monde.Monde(50, 30)
 game1 = simulation.Simulation(10, monde1)
 
 mouton = pygame.image.load("img/mouton.png").convert_alpha()
-mouton = pygame.transform.scale(mouton, (15 ,15))
+mouton = pygame.transform.scale(mouton, (20 ,20))
 
 loup = pygame.image.load("img/loup.png").convert_alpha()
-loup = pygame.transform.scale(loup, (15 ,15))
+loup = pygame.transform.scale(loup, (20 ,20))
 
 herbe_0 = pygame.image.load("img/herbe-0.jpg")
-herbe_0 = pygame.transform.scale(herbe_0, (15 ,15))
+herbe_0 = pygame.transform.scale(herbe_0, (20 ,20))
 herbe_1 = pygame.image.load("img/herbe-1.jpg")
-herbe_1 = pygame.transform.scale(herbe_1, (15 ,15))
+herbe_1 = pygame.transform.scale(herbe_1, (20 ,20))
 herbe_2 = pygame.image.load("img/herbe-2.jpg")
-herbe_2 = pygame.transform.scale(herbe_2, (15 ,15))
+herbe_2 = pygame.transform.scale(herbe_2, (20 ,20))
 
 
 while game1.nb_mouton() != 0:
@@ -41,23 +41,23 @@ while game1.nb_mouton() != 0:
         for j in range(monde1.get_dimension()):
             # Affichage sur la fenetre pygame
             if monde1.get_coef_carte(i, j) >= 0 and monde1.get_coef_carte(i,j) <=10:
-                screen.blit(herbe_0, (i * 15, j * 15))
+                screen.blit(herbe_0, (i * 20, j * 20))
 
             elif monde1.get_coef_carte(i, j) > 10 and monde1.get_coef_carte(i,j) <= 20:
-                screen.blit(herbe_1, (i * 15, j * 15))
+                screen.blit(herbe_1, (i * 20, j * 20))
 
             elif monde1.get_coef_carte(i, j) > 20:
-                screen.blit(herbe_2, (i * 15, j * 15))
+                screen.blit(herbe_2, (i * 20, j * 20))
 
             if (i, j) in coo_mouton and (i, j) in coo_loup:
-                screen.blit(mouton, (i * 15, j * 15))
-                screen.blit(loup, (i * 15, j * 15))
+                screen.blit(mouton, (i * 20, j * 20))
+                screen.blit(loup, (i * 20, j * 20))
 
             elif (i, j) in coo_mouton:
-                screen.blit(mouton, (i * 15, j * 15))
+                screen.blit(mouton, (i * 20, j * 20))
 
             elif (i, j) in coo_loup:
-                screen.blit(loup, (i * 15, j * 15))
+                screen.blit(loup, (i * 20, j * 20))
 
 
     nb_mouton = police.render('Nb de mouton : ' + str(+ game1.nb_mouton()), True, 'red')
