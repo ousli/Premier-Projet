@@ -29,7 +29,7 @@ herbe_2 = pygame.image.load("img/herbe-2.jpg")
 herbe_2 = pygame.transform.scale(herbe_2, (20 ,20))
 
 
-while game1.nb_mouton() != 0 or game1.nb_loup() != 0 :
+while game1.nb_mouton() != 0 and game1.nb_loup() != 0 :
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
